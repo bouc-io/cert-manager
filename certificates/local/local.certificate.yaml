@@ -1,0 +1,29 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: bouc-local-tls-secret
+  namespace: istio-system # Required.  Refer to: https://istio.io/latest/docs/tasks/traffic-management/ingress/kubernetes-ingress/
+spec:
+  isCA: true
+  secretName: bouc-local-tls-secret
+  issuerRef:
+    kind: ClusterIssuer
+    name: selfsigned-cluster-issuer
+  commonName: "${CLUSTER_DOMAIN}"
+  dnsNames:
+    - "app.${CLUSTER_DOMAIN}"
+    - "admin.${CLUSTER_DOMAIN}"
+    - "sso.${CLUSTER_DOMAIN}"
+    - "www.${CLUSTER_DOMAIN}"
+    - "api.${CLUSTER_DOMAIN}"
+    - "kiali.${CLUSTER_DOMAIN}"
+    - "jaeger.${CLUSTER_DOMAIN}"
+    - "tracing.${CLUSTER_DOMAIN}"
+    - "alertmanager.${CLUSTER_DOMAIN}"
+    - "prometheus.${CLUSTER_DOMAIN}"
+    - "grafana.${CLUSTER_DOMAIN}"
+    - "chat.${CLUSTER_DOMAIN}"
+    - "agent.${CLUSTER_DOMAIN}"
+    - "memory.${CLUSTER_DOMAIN}"
+    - "pushgateway.${CLUSTER_DOMAIN}"
+    - "${CLUSTER_DOMAIN}"
